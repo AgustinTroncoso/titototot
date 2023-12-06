@@ -1,0 +1,33 @@
+[
+    {
+      "name": "Carlos Iturra",
+      "rut": "19914277-1",
+      "book": "La niebla",
+      "borrowDate": "26/05/2023",
+      "returnDate": "20/07/2023",
+      "authorizedBy": "Agustin Troncoso",
+      "state": "Returned",
+      "passedReturn": "Yes"
+    },
+    {
+      "name": "Ana López",
+      "rut": "98765432-1",
+      "book": "Otro libro",
+      "borrowDate": "05/08/2023",
+      "returnDate": "20/08/2023",
+      "authorizedBy": "Carlos Rodríguez",
+      "state": "Returned",
+      "passedReturn": "Yes"
+    },
+    {
+      "name": "Juan Pérez",
+      "rut": "12345678-9",
+      "book": "Libro de ejemplo",
+      "borrowDate": "01/08/2023",
+      "returnDate": "15/08/2023",
+      "authorizedBy": "María Gómez",
+      "state": "Borrowed",
+      "passedReturn": "No"
+    }
+  ]
+  
