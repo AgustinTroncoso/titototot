@@ -1,33 +1,33 @@
 <script setup>
-
 // JS
-defineProps(['title', 'inputText', 'text']);
+defineProps(["title", "inputText", "placeholderText, vModel"]);
 </script>
 <script>
 export default {
-    props: {
+  props: {
     title: String,
     inputTextClass: String,
     placeholderText: String,
-  }
-}
+    vModel: String
+  },
+};
 </script>
 
 
 <template>
-<div class="inputContainer">
-                <!-- <label for="customer">Customer:</label> con este aparece al lado-->
-                <p>{{ title }}:</p>
-                <input
-                  class="inputText"
-                  :type="inputText"
-                  :name="customer"
-                  :placeholder="'Alejandro Arevalo'"
-                />
-              </div>
+  <div class="inputContainer">
+    <!-- <label for="customer">Customer:</label> con este aparece al lado-->
+    <p>{{ title }}:</p>
+    <input
+    :v-model="vModel"
+      class="inputText"
+      :type="inputText"
+      :name="customer"
+      :placeholder="placeholderText"
+     
+    />
+  </div>
 </template>
-
-
 
 <style scoped>
 .inputContainer {

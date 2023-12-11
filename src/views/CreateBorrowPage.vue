@@ -1,8 +1,41 @@
 <script setup>
+import { ref } from "vue";
 import NavBar from "../components/NavBar.vue";
 import moduleName from "../components/styles/template.css";
+import axios from "axios";
 
-defineProps({});
+const customerToBorrow = ref("");
+const rutCustomerToBorrow = ref("");
+const borrowedBook = ref("");
+const borrowDate = ref("");
+const returnDate = ref("");
+
+
+const handleSubmit = async () => {
+  try {
+    const formData = {
+      customerToBorrow: customerToBorrow.value,
+      rutCustomerToBorrow: rutCustomerToBorrow.value,
+      borrowedBook: borrowedBook.value,
+      borrowDate: borrowDate.value,
+      returnDate: returnDate.value
+      // Puedes agregar otras propiedades aquí
+    };
+
+    console.log(formData);
+
+    const response = await axios.post("http://localhost:8080/corazondelatorback/addborrow", formData);
+    
+    console.log(response.data);
+  } catch (error) {
+    console.error("Error al enviar la solicitud:", error);
+  }
+};
+
+
+
+
+
 </script>
 
 <template>
@@ -13,12 +46,13 @@ defineProps({});
         <span>Create Borrow</span>
       </div>
       <div class="formContainer">
-        <form class="form">
+        <form class="form" @submit.prevent="handleSubmit">
           <div class="column">
             <div class="inputContainer">
               <!-- <label for="customer">Customer:</label> con este aparece al lado-->
               <p>Customer:</p>
               <input
+              v-model="customerToBorrow"
                 class="inputText"
                 type="text"
                 name="customer"
@@ -28,6 +62,7 @@ defineProps({});
             <div class="inputContainer">
               <p>Customer Rut:</p>
               <input
+              v-model="rutCustomerToBorrow"
                 class="inputText"
                 type="text"
                 name="customerRut"
@@ -37,6 +72,7 @@ defineProps({});
             <div class="inputContainer">
               <p>Borrowed Book:</p>
               <input
+              v-model="borrowedBook"
                 class="inputText"
                 type="text"
                 name="customer"
@@ -47,8 +83,9 @@ defineProps({});
           <div class="column">
             <div class="inputContainer">
               <!-- <label for="customer">Customer:</label> con este aparece al lado-->
-              <p>Borrow Date:</p>
+            <p>Borrow Date:</p>
               <input
+             v-model="borrowDate"
                 class="inputText"
                 type="date"
                 name="borrowDate"
@@ -57,12 +94,13 @@ defineProps({});
             <div class="inputContainer">
               <p>Return Date:</p>
               <input
+            v-model="returnDate"
                 class="inputText"
                 type="date"
                 name="returnDate"
-              />
+              />       
             </div>
-            <button class="createButton">Create Borrow</button>
+            <button type="submit" class="createButton">Create Borrow</button>
           </div>
 
          
