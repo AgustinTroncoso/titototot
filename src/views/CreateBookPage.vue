@@ -5,20 +5,13 @@ import moduleName from "../components/styles/template.css";
 import Input from "../components/Input.vue";
 import axios from "axios";
 
-const image = ref(null);
-
-const handleImageChange = (event) => {
-  const file = event.target.files[0];
-  image.value = file;
-};
-
 //newspaper
 const title = ref("");
 const brand = ref("");
 const publicationDate = ref("");
 const edition = ref("");
 const editor = ref("");
-//const image = ref("");
+const image = ref("");
 
 //encyclopedia
 const encyclopediaType = ref("");
@@ -35,12 +28,13 @@ const category = ref("");
 const handleSubmitNewspaper = async () => {
   try {
     const formData = {
+      type: 'Newspaper',
       title: title.value,
       brand: brand.value,
       publicationDate: publicationDate.value,
       edition: edition.value,
       editor: editor.value,
-      //  image: image.value
+      image: image.value
 
       // Puedes agregar otras propiedades aquí
     };
@@ -61,13 +55,14 @@ const handleSubmitNewspaper = async () => {
 const handleSubmitEncyclopedia = async () => {
   try {
     const formData = {
+      type: 'Encyclopedia',
       title: title.value,
       encyclopediaType: encyclopediaType.value,
       language: language.value,
       author: author.value,
       publicationDate: publicationDate.value,
       edition: edition.value,
-      //  image: image.value
+      image: image.value
 
       // Puedes agregar otras propiedades aquí
     };
@@ -89,13 +84,14 @@ const handleSubmitEncyclopedia = async () => {
 const handleSubmitReadingBook = async () => {
   try {
     const formData = {
+      type: 'Readingbook',
       author: author.value,
       title: title.value,
       publicationDate: publicationDate.value,
       edition: edition.value,
       genre: genre.value,
       language: language.value,
-      //  image: image.value
+      image: image.value
 
       // Puedes agregar otras propiedades aquí
     };
@@ -116,6 +112,7 @@ const handleSubmitReadingBook = async () => {
 const handleSubmitDictionary = async () => {
   try {
     const formData = {
+      type: 'Dictionary',
       author: author.value,
       title: title.value,
       publicationDate: publicationDate.value,
@@ -123,7 +120,7 @@ const handleSubmitDictionary = async () => {
       editor: editor.value,
       category: category.value,
       language: language.value,
-      //  image: image.value
+      image: image.value
 
       // Puedes agregar otras propiedades aquí
     };
@@ -144,36 +141,22 @@ const handleSubmitDictionary = async () => {
 const handleSubmitComic = async () => {
   try {
     const formData = {
+      type: 'Comic',
       author: author.value,
       title: title.value,
       publicationDate: publicationDate.value,
       edition: edition.value,
       genre: genre.value,
-      //  image: image.value
+      image: image.value
 
       // Puedes agregar otras propiedades aquí
     };
-
-    const formComicImage = new FormData();
-    formComicImage.append('formData', JSON.stringify(formData));
-
-    // Agregar la lógica para manejar el archivo
-    const imageInput = document.querySelector('input[type="file"]');
-    const imageFile = imageInput.files[0];
-    if (imageFile) {
-      formComicImage.append("image", imageFile);
-    }
 
     console.log(formData);
 
     const response = await axios.post(
       "http://localhost:8080/corazondelatorback/addComic",
-      formComicImage,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      }
+      formData,
     );
 
     console.log(response.data);
@@ -245,7 +228,7 @@ export default {
                 <input
                   v-model="publicationDate"
                   class="inputText"
-                  type="text"
+                  type="date"
                   name="customerRut"
                   placeholder="19914277-1"
                 />
@@ -270,8 +253,19 @@ export default {
                   placeholder="19914277-1"
                 />
               </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
 
-              <Input title="Image" inputText="file" placeholderText="aaalga" />
+
+             
               <button type="submit" class="createButton">Create Book</button>
             </div>
           </form>
@@ -341,8 +335,19 @@ export default {
                   placeholder="19914277-1"
                 />
               </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              
 
-              <Input title="Image" inputText="file" />
+           
               <button type="submit" class="createButton">Create Book</button>
             </div>
           </form>
@@ -414,9 +419,19 @@ export default {
                   placeholder="19914277-1"
                 />
               </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <!---->
 
-              <Input title="Image" inputText="file" />
+              
               <button type="submit" class="createButton">Create Book</button>
             </div>
           </form>
@@ -498,8 +513,18 @@ export default {
                   placeholder="19914277-1"
                 />
               </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <!---->
-              <Input title="Image" inputText="file" />
+              
               <button type="submit" class="createButton">Create Book</button>
             </div>
           </form>
@@ -566,9 +591,9 @@ export default {
               <div class="inputContainer">
                 <p>Image:</p>
                 <input
-                 
+                  v-model="image"
                   class="inputText"
-                  type="file"
+                  type="text"
                   name="customerRut"
                   placeholder="19914277-1"
                 />

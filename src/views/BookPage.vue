@@ -1,9 +1,37 @@
 <script setup>
+import { onMounted } from 'vue';
 import NavBar from "../components/NavBar.vue";
 import moduleName from "../components/styles/template.css";
 import Book from '../components/Book.vue'
 import books from '../assets/books.json'
-defineProps(["books"]);
+import axios from 'axios';
+import { ref } from "vue";
+
+const booksData = ref([]);
+
+onMounted(async () => {
+  try {
+    // Obtén los datos de cómics desde el backend
+    const comicsResponse = await axios.get('http://localhost:8080/corazondelatorback/getComic');
+    booksData.value = booksData.value.concat(comicsResponse.data);
+
+    const newspaperResponse = await axios.get('http://localhost:8080/corazondelatorback/getNewspaper');
+    booksData.value = booksData.value.concat(newspaperResponse.data);
+
+    const encyclopediaResponse = await axios.get('http://localhost:8080/corazondelatorback/getEncyclopedia');
+    booksData.value = booksData.value.concat(encyclopediaResponse.data);
+
+    const readingbookResponse = await axios.get('http://localhost:8080/corazondelatorback/getReadingbook');
+    booksData.value = booksData.value.concat(readingbookResponse.data);
+
+    const dictionaryResponse = await axios.get('http://localhost:8080/corazondelatorback/getDictionary');
+    booksData.value = booksData.value.concat(dictionaryResponse.data);
+
+  } catch (error) {
+    console.error('Error al obtener los libros:', error);
+  }
+});
+
 </script>
 
 <template>
@@ -18,7 +46,7 @@ defineProps(["books"]);
           <button class="createButton">Create Book</button>
         </router-link>
       </div>
-      <Book v-for="book in books" :key="book.id" :book="book" />
+      <Book v-for="book in booksData" :key="book.id" :book="book" />
     </div>
   </div>
 </template>
