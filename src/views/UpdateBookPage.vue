@@ -2,7 +2,6 @@
 import { ref } from "vue";
 import NavBar from "../components/NavBar.vue";
 import moduleName from "../components/styles/template.css";
-import Input from "../components/Input.vue";
 const bookTypes = [
   "Newspaper",
   "Encyclopedia",
@@ -12,16 +11,10 @@ const bookTypes = [
 ];
 const selectedBookType = ref("Newspaper");
 defineProps({});
-</script>
-<script>
-import Input from "../components/Input.vue";
 
-export default {
-  components: {
-    Input,
-  },
-};
+
 </script>
+
 
 <template>
   <div>
@@ -43,12 +36,66 @@ export default {
         <div class="formContainer">
           <form class="form">
             <div class="column">
-              <Input title="Title" inputText="InputText" />
-              <Input title="Brand" inputText="InputText" />
-              <Input title="Publication Date" inputText="date" />
-              <Input title="Edition" inputText="InputText" />
-              <Input title="Editor" inputText="InputText" />
-              <Input title="Image" inputText="file" />
+              <div class="inputContainer">
+                <p>Title:</p>
+                <input
+                  v-model="title"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Brand:</p>
+                <input
+                  v-model="brand"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Publication Date:</p>
+                <input
+                  v-model="publicationDate"
+                  class="inputText"
+                  type="date"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Edition:</p>
+                <input
+                  v-model="edition"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Editor:</p>
+                <input
+                  v-model="editor"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <button class="createButton">Create Book</button>
             </div>
           </form>
@@ -58,12 +105,76 @@ export default {
         <div class="formContainer">
           <form class="form">
             <div class="column">
-              <Input title="Title" inputText="InputText" />
-              <Input title="encyclopediaType" inputText="InputText" />
-              <Input title="language" inputText="date" />
-              <Input title="author" inputText="InputText" />
-              <Input title="publicationDate" inputText="InputText" />
-              <Input title="Image" inputText="file" />
+              <div class="inputContainer">
+                <p>Title:</p>
+                <input
+                  v-model="title"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Encyclopedia Type:</p>
+                <input
+                  v-model="encyclopediaType"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Language:</p>
+                <input
+                  v-model="language"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Author:</p>
+                <input
+                  v-model="author"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Publication Date:</p>
+                <input
+                  v-model="publicationDate"
+                  class="inputText"
+                  type="date"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Edition:</p>
+                <input
+                  v-model="edition"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <button class="createButton">Create Book</button>
             </div>
           </form>
@@ -74,13 +185,76 @@ export default {
         <div class="formContainer">
           <form class="form">
             <div class="column">
-              <Input title="Title" inputText="InputText" />
-              <Input title="author" inputText="InputText" />
-              <Input title="Publication Date" inputText="date" />
-              <Input title="Edition" inputText="InputText" />
-              <Input title="genre" inputText="InputText" />
-              <Input title="language" inputText="InputText" />
-              <Input title="Image" inputText="file" />
+              <div class="inputContainer">
+                <p>Author:</p>
+                <input
+                  v-model="author"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Title:</p>
+                <input
+                  v-model="title"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Publication Date:</p>
+                <input
+                  v-model="publicationDate"
+                  class="inputText"
+                  type="date"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Edition:</p>
+                <input
+                  v-model="edition"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Genre:</p>
+                <input
+                  v-model="genre"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Language:</p>
+                <input
+                  v-model="language"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <button class="createButton">Create Book</button>
             </div>
           </form>
@@ -91,14 +265,86 @@ export default {
         <div class="formContainer">
           <form class="form">
             <div class="column">
-              <Input title="Title" inputText="InputText" />
-              <Input title="author" inputText="InputText" />
-              <Input title="Publication Date" inputText="date" />
-              <Input title="Edition" inputText="InputText" />
-              <Input title="Editor" inputText="InputText" />
-              <Input title="category" inputText="InputText" />
-              <Input title="language" inputText="InputText" />
-              <Input title="Image" inputText="file" />
+              <div class="inputContainer">
+                <p>Author:</p>
+                <input
+                  v-model="author"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Title:</p>
+                <input
+                  v-model="title"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Publication Date:</p>
+                <input
+                  v-model="publicationDate"
+                  class="inputText"
+                  type="date"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Edition:</p>
+                <input
+                  v-model="edition"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Editor:</p>
+                <input
+                  v-model="editor"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Category:</p>
+                <input
+                  v-model="category"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Language:</p>
+                <input
+                  v-model="language"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Image:</p>
+                <input
+                  v-model="image"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
               <button class="createButton">Create Book</button>
             </div>
           </form>
@@ -109,13 +355,57 @@ export default {
         <div class="formContainer">
           <form class="form">
             <div class="column">
-              <Input title="Title" inputText="InputText" />
-              <Input title="author" inputText="InputText" />
-              <Input title="Publication Date" inputText="date" />
-              <Input title="Edition" inputText="InputText" />
-              <Input title="genre" inputText="InputText" />
-              <Input title="Image" inputText="file" />
-              <button class="createButton">Create Book</button>
+              <div class="inputContainer">
+                <p>Author:</p>
+                <input
+                  v-model="author"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Title:</p>
+                <input
+                  v-model="title"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Publication Date:</p>
+                <input
+                  v-model="publicationDate"
+                  class="inputText"
+                  type="date"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Edition:</p>
+                <input
+                  v-model="edition"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <div class="inputContainer">
+                <p>Genre:</p>
+                <input
+                  v-model="genre"
+                  class="inputText"
+                  type="text"
+                  name="customerRut"
+                  placeholder="19914277-1"
+                />
+              </div>
+              <button class="createButton">Update Book</button>
             </div>
           </form>
         </div>
@@ -167,5 +457,17 @@ export default {
   border: none;
   color: white;
   margin-top: 10px;
+}
+.inputText {
+  color: white;
+  border-radius: 15px;
+  background-color: #835cd3;
+  border: none;
+  height: 50px;
+  width: 380px;
+}
+.inputContainer {
+  margin-top: 20px;
+  text-align: left;
 }
 </style>

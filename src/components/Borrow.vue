@@ -1,8 +1,33 @@
 <script setup>
 import QR from "../assets/QR.png";
 import editLogo2 from '../assets/editLogo2.png'
+import axios from 'axios';
+import { ref } from "vue";
+const props = defineProps(["borrow"]);
 
-const props = defineProps([
+const handleDeleteBorrow = async () => {
+  if (!props.borrow || !props.borrow.id) {
+    console.error("ID de borrow no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Borrow?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteBorrow/${props.borrow.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/*const props = defineProps([
   'name',
   'rut',
   'book',
@@ -11,7 +36,7 @@ const props = defineProps([
   'authorizedBy',
   'state',
   'passedReturn'
-]);
+]);*/
 
 </script>
 
@@ -22,19 +47,19 @@ const props = defineProps([
     </div>
     <div class="borrowInformationContainer">
       <div class="column">
-        <p class="informationText">Customer: {{ props.name }}</p>
-        <p class="informationText">Rut: {{props.rut }}</p>
-        <p class="informationText">Book: {{ props.book }}</p>
+        <p class="informationText">Customer: {{ borrow.customerToBorrow }}</p>
+        <p class="informationText">Rut: {{borrow.rutCustomerToBorrow }}</p>
+        <p class="informationText">Book ID: {{ borrow.borrowedBook }}</p>
       </div>
       <div class="column">
-        <p class="informationText">Borrow&nbsp;Date:&nbsp;{{props.borrowDate }}</p>
-        <p class="informationText">Return Date: {{ props.returnDate }}</p>
-        <p class="informationText">Authorized&nbsp;By:&nbsp;{{props.authorizedBy}}</p>
+        <p class="informationText">Borrow&nbsp;Date:&nbsp;{{borrow.borrowDate }}</p>
+        <p class="informationText">Return Date: {{ borrow.returnDate }}</p>
+        <p class="informationText">Authorized&nbsp;By:&nbsp;{{borrow.authorizedBy}}</p>
       </div>
       <div class="column">
-        <p class="informationText">State: {{props.state }}</p>
-        <p class="informationText">Passed Return: {{ props.passedReturn }}</p>
-        <button class="deleteButton">Delete Button</button>
+        <p class="informationText">State: {{borrow.passReturnDate }}</p>
+        <p class="informationText">Passed Return: {{ borrow.state }}</p>
+        <button class="deleteButton" @click="handleDeleteBorrow">Delete Button</button>
         <button class="editButton"> <img class="editLogo" :src="editLogo2"/></button>
       </div>
     </div>

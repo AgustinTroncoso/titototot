@@ -9,7 +9,9 @@ const rutCustomerToBorrow = ref("");
 const borrowedBook = ref("");
 const borrowDate = ref("");
 const returnDate = ref("");
-
+const authorizedBy = ref("");
+const passReturnDate = ref("");
+const state = ref("");
 
 const handleSubmit = async () => {
   try {
@@ -18,24 +20,26 @@ const handleSubmit = async () => {
       rutCustomerToBorrow: rutCustomerToBorrow.value,
       borrowedBook: borrowedBook.value,
       borrowDate: borrowDate.value,
-      returnDate: returnDate.value
+      returnDate: returnDate.value,
+      authorizedBy: "Carlos Iturra",
+      passReturnDate: passReturnDate.value,
+      state: state.value,
+
       // Puedes agregar otras propiedades aquí
     };
 
     console.log(formData);
 
-    const response = await axios.post("http://localhost:8080/corazondelatorback/addborrow", formData);
-    
+    const response = await axios.post(
+      "http://localhost:8080/corazondelatorback/addborrow",
+      formData
+    );
+
     console.log(response.data);
   } catch (error) {
     console.error("Error al enviar la solicitud:", error);
   }
 };
-
-
-
-
-
 </script>
 
 <template>
@@ -52,7 +56,7 @@ const handleSubmit = async () => {
               <!-- <label for="customer">Customer:</label> con este aparece al lado-->
               <p>Customer:</p>
               <input
-              v-model="customerToBorrow"
+                v-model="customerToBorrow"
                 class="inputText"
                 type="text"
                 name="customer"
@@ -62,7 +66,7 @@ const handleSubmit = async () => {
             <div class="inputContainer">
               <p>Customer Rut:</p>
               <input
-              v-model="rutCustomerToBorrow"
+                v-model="rutCustomerToBorrow"
                 class="inputText"
                 type="text"
                 name="customerRut"
@@ -72,7 +76,7 @@ const handleSubmit = async () => {
             <div class="inputContainer">
               <p>Borrowed Book:</p>
               <input
-              v-model="borrowedBook"
+                v-model="borrowedBook"
                 class="inputText"
                 type="text"
                 name="customer"
@@ -83,9 +87,9 @@ const handleSubmit = async () => {
           <div class="column">
             <div class="inputContainer">
               <!-- <label for="customer">Customer:</label> con este aparece al lado-->
-            <p>Borrow Date:</p>
+              <p>Borrow Date:</p>
               <input
-             v-model="borrowDate"
+                v-model="borrowDate"
                 class="inputText"
                 type="date"
                 name="borrowDate"
@@ -94,16 +98,35 @@ const handleSubmit = async () => {
             <div class="inputContainer">
               <p>Return Date:</p>
               <input
-            v-model="returnDate"
+                v-model="returnDate"
                 class="inputText"
                 type="date"
                 name="returnDate"
-              />       
+              />
             </div>
+            <div class="inputContainer">
+              <p>passReturnDate:</p>
+              <input
+                v-model="passReturnDate"
+                class="inputText"
+                type="text"
+                name="returnDate"
+                placeholder="yes or no"
+              />
+            </div>
+            <div class="inputContainer">
+              <p>state:</p>
+              <input
+                v-model="state"
+                class="inputText"
+                type="text"
+                name="returnDate"
+                placeholder="passed or notpassed"
+              />
+            </div>
+            
             <button type="submit" class="createButton">Create Borrow</button>
           </div>
-
-         
         </form>
       </div>
     </div>
@@ -136,7 +159,7 @@ const handleSubmit = async () => {
   width: 180px;
   height: 51px;
   margin-top: 67px;
-    margin-left: 50%;
+  margin-left: 50%;
 }
 .formContainer {
   background-color: #483078;
@@ -146,8 +169,7 @@ const handleSubmit = async () => {
   display: flex;
 }
 .inputContainer {
-    margin-top: 20px;
+  margin-top: 20px;
   text-align: left;
 }
-
 </style>

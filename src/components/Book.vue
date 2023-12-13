@@ -1,9 +1,123 @@
 <script setup>
+import { ref } from "vue";
 import QR from "../assets/QR.png";
 import editLogo2 from "../assets/editLogo2.png";
+import axios from "axios";
 
+const handleDeleteNewspaper = async () => {
+  if (!props.book || !props.book.id) {
+    console.error("ID de libro no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Newspaper?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteNewspaper/${props.book.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+//
+const handleDeleteEncyclopedia = async () => {
+  if (!props.book || !props.book.id) {
+    console.error("ID de libro no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Encyclopedia?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteEncyclopedia/${props.book.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
+//
+const handleDeleteReadingbook = async () => {
+  if (!props.book || !props.book.id) {
+    console.error("ID de libro no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Readingbook?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteReadingbook/${props.book.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
+//
+const handleDeleteDictionary = async () => {
+  if (!props.book || !props.book.id) {
+    console.error("ID de libro no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Dictionary?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteDictionary/${props.book.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
+//
+const handleDeleteComic = async () => {
+  if (!props.book || !props.book.id) {
+    console.error("ID de libro no válido");
+    return;
+  }
+  const confirmDelete = window.confirm(
+    "¿Are you sure you want to delete this Comic?"
+  );
+  if (!confirmDelete) {
+    return;
+  }
+  try {
+    const response = await axios.delete(
+      `http://localhost:8080/corazondelatorback/deleteComic/${props.book.id}`
+    );
+    console.log(response.data); // Muestra el mensaje de eliminación (por ejemplo, "Comic eliminado")
+    // Puedes actualizar la lista de libros después de la eliminación si es necesario
+  } catch (error) {
+    console.error(error);
+  }
+};
 const props = defineProps(["book"]);
 </script>
+
+<script></script>
 
 <template>
   <div class="bookListed">
@@ -26,10 +140,14 @@ const props = defineProps(["book"]);
           <p class="informationText">Borrow Stock: {{ book.borrowStock }}</p>
         </div>
         <div class="column">
-          <button class="deleteButton">Delete Button</button>
-          <button class="editButton">
-            <img class="editLogo" :src="editLogo2" />
+          <button class="deleteButton" @click="handleDeleteNewspaper">
+            Delete Button
           </button>
+          <router-link to="/updatebookpage">
+            <button class="editButton">
+              <img class="editLogo" :src="editLogo2" />
+            </button>
+          </router-link>
         </div>
       </template>
       <template v-if="book.type === 'Encyclopedia'">
@@ -53,7 +171,9 @@ const props = defineProps(["book"]);
         <div class="column">
           <p class="informationText">Stock: {{ book.stock }}</p>
           <p class="informationText">Borrow Stock: {{ book.borrowStock }}</p>
-          <button class="deleteButton">Delete Button</button>
+          <button class="deleteButton" @click="handleDeleteEncyclopedia">
+            Delete Button
+          </button>
           <button class="editButton">
             <img class="editLogo" :src="editLogo2" />
           </button>
@@ -77,7 +197,9 @@ const props = defineProps(["book"]);
           <p class="informationText">Borrow Stock: {{ book.borrowStock }}</p>
         </div>
         <div class="column">
-          <button class="deleteButton">Delete Button</button>
+          <button class="deleteButton" @click="handleDeleteReadingbook">
+            Delete Button
+          </button>
           <button class="editButton">
             <img class="editLogo" :src="editLogo2" />
           </button>
@@ -103,7 +225,9 @@ const props = defineProps(["book"]);
         <div class="column">
           <p class="informationText">Stock: {{ book.stock }}</p>
           <p class="informationText">Borrow Stock: {{ book.borrowStock }}</p>
-          <button class="deleteButton">Delete Button</button>
+          <button class="deleteButton" @click="handleDeleteDictionary">
+            Delete Button
+          </button>
           <button class="editButton">
             <img class="editLogo" :src="editLogo2" />
           </button>
@@ -127,7 +251,9 @@ const props = defineProps(["book"]);
           <p class="informationText">Borrow Stock: {{ book.borrowStock }}</p>
         </div>
         <div class="column">
-          <button class="deleteButton">Delete Button</button>
+          <button class="deleteButton" @click="handleDeleteComic">
+            Delete Button
+          </button>
           <button class="editButton">
             <img class="editLogo" :src="editLogo2" />
           </button>

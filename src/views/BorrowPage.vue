@@ -1,9 +1,26 @@
 <script setup>
+import { onMounted } from 'vue';
 import NavBar from "../components/NavBar.vue";
 import moduleName from "../components/styles/template.css";
 import Borrow from "../components/Borrow.vue";
 import borrows from "../assets/borrows.json";
+import axios from 'axios';
+import { ref } from "vue";
+
+const borrowsData = ref([]);
 defineProps(["borrows"]);
+
+onMounted(async () => {
+  try {
+    // Obtén los datos de borrows desde el backend
+    const borrowsResponse = await axios.get('http://localhost:8080/corazondelatorback/getborrow');
+    borrowsData.value = borrowsData.value.concat(borrowsResponse.data);
+
+  } catch (error) {
+    console.error('Error al obtener los borrows:', error);
+  }
+});
+
 </script>
 
 <template>
@@ -19,16 +36,7 @@ defineProps(["borrows"]);
         </router-link>
       </div>
       <Borrow class="borrow"
-        v-for="borrow in borrows"
-        :key="borrow.id"
-        :name="borrow.name"
-        :rut="borrow.rut"
-        :book="borrow.book"
-        :borrowDate="borrow.borrowDate"
-        :returnDate="borrow.returnDate"
-        :authorizedBy="borrow.authorizedBy"
-        :state="borrow.state"
-        :passedReturn="borrow.passedReturn"
+      v-for="borrow in borrowsData" :key="borrow.id" :borrow="borrow"
       />
     </div>
   </div>
