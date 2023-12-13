@@ -3,6 +3,11 @@ import "../components/styles/general.css";
 import userNameInputLogo from "../assets/userName.png";
 import passwordInputLogo from "../assets/passwordInputLogo (2).png";
 import NavBar from '../components/NavBar.vue'
+import { ref } from 'vue';
+import axios from "axios";
+
+
+
 </script>
 
 <template>
@@ -11,7 +16,7 @@ import NavBar from '../components/NavBar.vue'
     <div class="signInTextContainer">
       <span class="signInText">Sign In</span>
     </div>
-    <form>
+    <form @submit.prevent="submitForm">
       <div class="userNameInputContainer">
         <div class="userInputLogoContainer">
           <img :src="userNameInputLogo" />
@@ -23,6 +28,7 @@ import NavBar from '../components/NavBar.vue'
             placeholder="   Username..."
             aria-label="Username"
             aria-describedby="basic-addon1"
+            v-model="username" 
           />
         </div>
       </div>
@@ -38,6 +44,7 @@ import NavBar from '../components/NavBar.vue'
             placeholder="   Password..."
             aria-label="Username"
             aria-describedby="basic-addon1"
+            v-model="password"
           />
         </div>
       </div>
